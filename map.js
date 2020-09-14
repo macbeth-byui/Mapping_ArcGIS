@@ -2,10 +2,11 @@ require([
     "esri/Map",
     "esri/views/MapView",
     "esri/Graphic",
-    "esri/layers/GraphicsLayer"
-  ], function(Map, MapView, Graphic, GraphicsLayer) {
+    "esri/layers/GraphicsLayer",
+    "esri/layers/FeatureLayer"	
+  ], function(Map, MapView, Graphic, GraphicsLayer, FeatureLayer) {
 
-        // Select the topographic map
+        // Select the topographic map 
         var map = new Map({
             basemap: "topo-vector"
         });
@@ -17,6 +18,12 @@ require([
             center: [-111.7896876, 43.8260227], // longitude, latitude
             zoom: 3
         });
+		
+		var featureLayer = new FeatureLayer({
+			url: "https://services3.arcgis.com/GVgbJbqm8hXASVYi/arcgis/rest/services/Trailheads/FeatureServer/0"
+		});
+
+		map.add(featureLayer);
 
         // Create a Graphics Layer which can be used to draw graphics
         var graphicsLayer = new GraphicsLayer();
